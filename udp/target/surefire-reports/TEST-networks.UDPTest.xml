@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="networks.UDPTest" time="3.075" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="networks.UDPTest" time="9.098" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/jahdiel/Documents/UPRM/CIIC/CIIC4070 - Computer Networks/Project3-TwoLayer/./udp/target/surefire/surefirebooter1061091265795609756.jar /Users/jahdiel/Documents/UPRM/CIIC/CIIC4070 - Computer Networks/Project3-TwoLayer/udp/target/surefire 2020-03-30T17-58-39_209-jvmRun1 surefire15719125253165078553tmp surefire_016465284747326094998tmp"/>
+    <property name="sun.java.command" value="/Users/jahdiel/Documents/UPRM/CIIC/CIIC4070 - Computer Networks/Project3-TwoLayer/./udp/target/surefire/surefirebooter16628932106892371675.jar /Users/jahdiel/Documents/UPRM/CIIC/CIIC4070 - Computer Networks/Project3-TwoLayer/udp/target/surefire 2020-03-30T19-38-20_133-jvmRun1 surefire11051227517780008538tmp surefire_07092013337628273660tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/jahdiel/Documents/UPRM/CIIC/CIIC4070 - Computer Networks/Project3-TwoLayer/./udp/target/test-classes:/Users/jahdiel/Documents/UPRM/CIIC/CIIC4070 - Computer Networks/Project3-TwoLayer/./udp/target/classes:/Users/jahdiel/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/jahdiel/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
@@ -34,7 +34,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/Users/jahdiel/Documents/UPRM/CIIC/CIIC4070 - Computer Networks/Project3-TwoLayer/./udp/target/surefire/surefirebooter1061091265795609756.jar"/>
+    <property name="surefire.real.class.path" value="/Users/jahdiel/Documents/UPRM/CIIC/CIIC4070 - Computer Networks/Project3-TwoLayer/./udp/target/surefire/surefirebooter16628932106892371675.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="10.0.2+13"/>
@@ -62,5 +62,5 @@
     <property name="java.class.version" value="54.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="whenCanSendAndReceivePacket_thenCorrect1" classname="networks.UDPTest" time="3.04"/>
+  <testcase name="whenCanSendAndReceivePacket_thenCorrect1" classname="networks.UDPTest" time="9.062"/>
 </testsuite>

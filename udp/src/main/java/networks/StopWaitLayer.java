@@ -35,48 +35,46 @@ public class StopWaitLayer {
         if (this.sequenceNumber < 0)
             throw new Exception("The sequence number should be defined before sending message.");
         this.socket.setSoTimeout(timeout); // Set timeout for receiver
-        DatagramPacket receivePacket = new DatagramPacket(buf, buf.length);
-        DatagramPacket packet = p.getPacket();
-        this.addSequenceNumber(this.sequenceNumber, packet);
+        StopWaitPacket receivePacket = new StopWaitPacket(buf, buf.length);
+        this.addSequenceNumber(this.sequenceNumber, p.getPacket());
         boolean sending = true;
         while (sending) {
-            socket.sendPacket(packet);
+            socket.sendPacket(p.getPacket());
             try {
-                socket.receive(receivePacket);
-                String received = new String(receivePacket.getData(), 0, receivePacket.getLength()-1);
-                System.out.println(received);
-                this.sequenceNumber = this.sequenceNumber % 2 == 0 ? 1 : 0; // Switch sequence
-                sending = false;
+                boolean receiving = true;
+                while (receiving) {
+                    socket.receive(receivePacket.getPacket());
+                    if ((this.sequenceNumber % 2 == 0 ? 1 : 0) == receivePacket.getSequenceNumber()) {
+                        this.sequenceNumber = this.sequenceNumber % 2 == 0 ? 1 : 0; // Switch sequence
+                        sending = false;
+                        receiving = false;
+                    }
+                }
             } catch (SocketTimeoutException e) {
-                System.out.println("Timeout!"); // Send again
+                // System.out.println("Timeout!"); // Send again
             }
         }
         this.socket.setSoTimeout(0); // Disable timeout for receiver
     }
 
     public void receive(StopWaitPacket p) throws IOException {
-        socket.receive(p.getPacket());
-
-        // InetAddress address = p.getAddress();
-        // int port = p.getPort();
-        // DatagramPacket packet = new DatagramPacket(p.getData(), p.length, address, port);
-        socket.send(p.getPacket()); // TODO: Change to sendPacket
-
-
-        // DatagramPacket packet = p.getPacket();
-        // System.out.println("New Length: "+ packet.getLength());
-        // System.out.println("SeqNum: " + packet.getData()[packet.getLength()-1]);
-        // String received = new String(packet.getData(), 0, packet.getLength()-1);
-        // System.out.println(received);
-
-        // if (this.sequenceNumber < 0) {
-        //     this.sequenceNumber = p.getSequenceNumber() % 2 == 0 ? 1 : 0; // Return the opposite
-        // } else {
-        //     if (this.sequenceNumber == p.getSequenceNumber()) {
-        //         DatagramPacket packet = p.getPacket();
-        //         socket.receive(packet);
-        //     }
-        // }
+        boolean receiving = true;
+        while (receiving) {
+            socket.receive(p.getPacket());
+            int newSequenceNumber = p.getSequenceNumber() % 2 == 0 ? 1 : 0; // Return the opposite
+            if (this.sequenceNumber < 0) {
+                this.sequenceNumber = newSequenceNumber;
+                receiving = false;
+            } else if (this.sequenceNumber == p.getSequenceNumber()) {
+                this.sequenceNumber = this.sequenceNumber % 2 == 0 ? 1 : 0;
+                receiving = false;
+            }
+            InetAddress address = p.getAddress();
+            int port = p.getPort();
+            StopWaitPacket ack = new StopWaitPacket(this.buf, this.buf.length, address, port);
+            ack.setSequenceNumber(newSequenceNumber);
+            socket.sendPacket(ack.getPacket());
+        }
     }
 
     public void close() {

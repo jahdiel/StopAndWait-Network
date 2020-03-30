@@ -29,11 +29,11 @@ public class CommLayer extends DatagramSocket {
     public void sendPacket(DatagramPacket p) throws IOException {
         boolean lost = new Random().nextInt(5)==0; 
         boolean duplicate = new Random().nextInt(10)==0;
-        if (lost)
-            System.out.println("Lost");
+        // if (lost)
+        //     System.out.println("Lost");
         if (!lost) { // Discards a packet with 20% probability
             if(duplicate) { // Sends a duplicated packet with 10% probability 
-                System.out.println("Duplicated"); 
+                // System.out.println("Duplicated"); 
                 this.send(p);
                 this.send(p);
             }else{

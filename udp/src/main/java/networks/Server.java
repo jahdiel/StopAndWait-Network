@@ -1,7 +1,5 @@
 package networks;
 
-import java.net.DatagramPacket;
-import java.net.InetAddress;
 import java.net.SocketException;
 
 public class Server extends Thread {
@@ -25,21 +23,16 @@ public class Server extends Thread {
             try {
                 StopWaitPacket packet = new StopWaitPacket(buf, buf.length);
                 socket.receive(packet);
-                // System.out.println("SeqNum: " + packet.getSequenceNumber());
                 String received = new String(packet.getData(), 0, packet.getLength());
                 if (received.equals("end")) {
                     running = false;
                     continue;
                 }
-                // System.out.println(received);
-                // InetAddress address = packet.getAddress();
-                // int port = packet.getPort();
-                // packet = new StopWaitPacket(buf, buf.length, address, port);
-                
-                // socket.sendPacket(packet);
+                System.out.println(received);
             } catch (Exception e) {
                 if (!socket.isClosed()) {
-                    System.out.println("Exception thrown "+e.getMessage());
+                    System.out.println("Exception thrown: "+e.getMessage());
+                    e.printStackTrace();
                     socket.close();
                 } 
             }

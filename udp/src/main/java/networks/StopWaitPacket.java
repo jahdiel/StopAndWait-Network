@@ -8,7 +8,6 @@ import java.net.SocketException;
 
 public class StopWaitPacket {
 
-    private int sequence;
     private DatagramPacket packet;
 
     public StopWaitPacket(byte[] buf, int length) {
@@ -37,7 +36,11 @@ public class StopWaitPacket {
 
 
     public byte getSequenceNumber() {
-        return this.packet.getData()[packet.getLength()-1];
+        return this.packet.getData()[this.packet.getLength()-1];
+    }
+
+    public void setSequenceNumber(int setSequenceNumber) {
+        this.packet.getData()[this.packet.getLength()-1] = (byte) setSequenceNumber;
     }
 
     public DatagramPacket getPacket() {
