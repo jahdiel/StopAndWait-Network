@@ -1,9 +1,6 @@
 package networks;
 
-import java.net.DatagramPacket;
 import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 
 public class Client {
     private StopWaitLayer socket;
@@ -36,20 +33,4 @@ public class Client {
     public void close() {
         socket.close();
     }
-
-    // public String sendEcho(String msg) {
-    //     String received = null;
-    //     try {
-    //         buf = msg.getBytes();
-    //         DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
-    //         socket.sendPacket(packet);
-    //         packet = new DatagramPacket(buf, buf.length);
-    //         socket.receivePacket(packet);
-    //         received = new String(
-    //         packet.getData(), 0, packet.getLength());
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     }
-    //     return received; 
-    // }
 }
